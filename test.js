@@ -186,10 +186,10 @@ describe('Sorter', () => {
     });
 
     it('11', () => {
-      sorter.add(6);
-      sorter.add(5);
-      sorter.add(2);
-      sorter.add(1);
+      sorter.add(6); 6
+      sorter.add(5); 2
+      sorter.add(2); 1
+      sorter.add(1); 5
 
       sorter.sort([2, 1]);
       sorter.sort([3, 2]);
