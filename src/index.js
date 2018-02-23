@@ -28,19 +28,23 @@ class Sorter {
 
   sort(indices) {
     var buffer;
-    for (var i = 0; i < this.indicies.length; i++)
+    var reversedElements = [];
+    var argsLength = arguments.length;
+    for (var i = 0; i < arguments.length; i++)
     {
-      if (typeof(this.elements[indities[i]]) == "number")
+      if ((typeof(this.elements[arguments[i]]) == "number") && (arguments.length > 1))
       {
-        buffer = this.elements[indicies[i]];
-        this.elements[indicies[i]] = this.elements[indities[i+1]];
-        this.elements[indities[i+1]] = buffer;
+        reversedElements[i] = this.elements[argsLength-1];
+        argsLength--;
+       /* buffer = this.elements[arguments[i]];
+        this.elements[arguments[i]] = this.elements[arguments[i+1]];
+        this.elements[arguments[i+1]] = buffer; */
       }
     }
   }
 
   setComparator(compareFunction) {
-    compareFunction (this.elements); // принимает функцию в качестве параметра и использует её, чтобы отсортировать элементы
+    compareFunction (this.elements);
   }
 }
 
