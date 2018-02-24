@@ -1,12 +1,10 @@
 class Sorter {
   constructor() {
     this.elements = [];
-    this.addedCount = 0;
   }
 
   add(element) {
     this.elements.push(element);
-    this.addedCount++;
   }
 
   at(index) {
@@ -14,37 +12,37 @@ class Sorter {
   }
 
   get length() {
-    return this.addedCount;
+    return this.elements.length;
   }
 
   toArray() {
-    this.resultingArray = [];
-    for (var i = 0; i < this.addedCount; i++)
-    {
-      this.resultingArray[i] = this.elements[i];
-    }
-    return this.resultingArray;
+    return this.elements;
   }
 
   sort(indices) {
-    var buffer;
-    var reversedElements = [];
-    var argsLength = arguments.length;
-    for (var i = 0; i < arguments.length; i++)
-    {
-      if ((typeof(this.elements[arguments[i]]) == "number") && (arguments.length > 1))
+      var sortTemp = [];
+      for (var i = 0; i < indices.length; i++)
       {
-        reversedElements[i] = this.elements[argsLength-1];
-        argsLength--;
-       /* buffer = this.elements[arguments[i]];
-        this.elements[arguments[i]] = this.elements[arguments[i+1]];
-        this.elements[arguments[i+1]] = buffer; */
+        sortTemp[i] = this.elements[indices[i]];
       }
-    }
+      if (this.compareFunction)
+      {
+        sortTemp.sort(this.compareFunction);
+      }
+      else
+      {
+        sortTemp.sort();
+      }
+      var j = 0;
+      for (var i in indices)
+      {
+        this.elements[i] = sortTemp[j];
+        j++;
+      }
   }
 
   setComparator(compareFunction) {
-    compareFunction (this.elements);
+    this.compareFunction = compareFunction;
   }
 }
 
