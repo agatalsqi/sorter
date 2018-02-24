@@ -19,7 +19,8 @@ class Sorter {
     return this.elements;
   }
 
-  sort(indices) {
+  sort(indices) { 
+      indices.sort();
       var sortTemp = [];
       for (var i = 0; i < indices.length; i++)
       {
@@ -31,12 +32,15 @@ class Sorter {
       }
       else
       {
-        sortTemp.sort();
+        function compareNumeric(a, b) {
+          return a - b;
+        }
+        sortTemp.sort(compareNumeric);
       }
       var j = 0;
-      for (var i in indices)
+      for (var i = 0; i < indices.length; i++)
       {
-        this.elements[i] = sortTemp[j];
+        this.elements[indices[i]] = sortTemp[j];
         j++;
       }
   }
